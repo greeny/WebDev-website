@@ -5,7 +5,7 @@
 </div>
 
 <div class="well well-small" n:foreach="$posts as $post">
-	{var $f = $user->id === $post->user->id ? 'f-' : ''}
+	{var $f = $user->id == $post->user->id ? 'f-' : ''}
 	<div class="btn-group-vertical pull-right">
 		<a class="btn btn-warning" n:if="$user->isAllowed('post', $f.'edit')" n:href="edit, id => $post->id">
 			<span class="icon-pencil"></span>
