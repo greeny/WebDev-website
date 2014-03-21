@@ -3,7 +3,7 @@
  * @author Tomáš Blatný
  */
 
-require "libs/Nette/loader.php";
+require "vendor/nette/nette/Nette/loader.php";
 
 $ignored = array('.', '..');
 
