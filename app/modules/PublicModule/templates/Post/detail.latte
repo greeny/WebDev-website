@@ -1,0 +1,18 @@
+{block content}
+{var $f = $user->id === $post->user->id ? 'f-' : ''}
+<div class="btn-group-vertical pull-right">
+	<a class="btn btn-warning" n:if="$user->isAllowed('post', $f.'edit')" n:href="edit, id => $post->id">
+		<span class="icon-pencil"></span>
+	</a>
+	<a class="btn btn-danger" n:if="$user->isAllowed('post', $f.'delete')" n:href="delete! $post->id" data-confirm="Opravdu chcete smazat tento příspěvek?">
+		<span class="icon-remove"></span>
+	</a>
+</div>
+<div class="page-header">
+	<h1>{$post->title}</h1>
+</div>
+<span class="icon-user"></span> <a n:href="User:detail $post->user->id">{$post->user->nick}</a><br>
+<span class="icon-time"></span> {$post->time|time}
+
+<hr>
+{$post->text|texy}

@@ -1,4 +1,24 @@
 {block content}
+<a n:if="$user->isAllowed('post', 'compose')" n:href="compose" class="btn btn-success pull-right"><span class="icon-plus"></span></a>
 <div class="page-header">
-	<h1></h1>
+	<h1>Seznam příspěvků</h1>
 </div>
+
+<div class="well well-small" n:foreach="$posts as $post">
+	{var $f = $user->id === $post->user->id ? 'f-' : ''}
+	<div class="btn-group-vertical pull-right">
+		<a class="btn btn-warning" n:if="$user->isAllowed('post', $f.'edit')" n:href="edit, id => $post->id">
+			<span class="icon-pencil"></span>
+		</a>
+		<a class="btn btn-danger" n:if="$user->isAllowed('post', $f.'delete')" n:href="delete! $post->id" data-confirm="Opravdu chcete smazat tento příspěvek?">
+			<span class="icon-remove"></span>
+		</a>
+	</div>
+	<h3><a n:href="Post:detail $post->id">{$post->title}</a></h3>
+	<span class="icon-user"></span> <a n:href="User:detail $post->user->id">{$post->user->nick}</a><br>
+	<span class="icon-time"></span> {$post->time|time}
+	<hr>
+	{$post->text|truncate:100|texy}
+</div>
+
+{include paginator, paginator => $paginator}

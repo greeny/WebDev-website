@@ -1,4 +1,15 @@
 {block content}
 <div class="span6">
-	<h3>Nejnovější příspěvky</h3>
+	<h2>Nejnovější příspěvky</h2>
+	<div class="well well-small" n:foreach="$posts as $post">
+		<h3><a n:href="Post:detail $post->id">{$post->title}</a></h3>
+		<small>
+			<span class="icon-user"></span> <a n:href="User:detail $post->user->id">{$post->user->nick}</a><br>
+			<span class="icon-time"></span> {$post->time|time}
+		</small>
+		<hr>
+		{$post->text|truncate:100|texy}
+	</div>
+
+	<a class="btn btn-primary" n:href="Post:list">Všechny příspěvky</a>
 </div>

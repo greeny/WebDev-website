@@ -27,6 +27,7 @@ services:
 	- LeanMapper\DefaultEntityFactory
 
 	- WebDev\Security\Authenticator
+	- WebDev\Security\Authorizator
 
 	- WebDev\Model\PostRepository
 	- WebDev\Model\UserRepository

@@ -26,7 +26,7 @@ abstract class BaseEntity extends Entity {
 	/**
 	 * @param ArrayHash $data
 	 */
-	public function modify(ArrayHash $data)
+	public function update(ArrayHash $data)
 	{
 		foreach($data as $key => $value) {
 			$this->$key = $value;
