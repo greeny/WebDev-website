@@ -12,7 +12,8 @@ class Authorizator extends Permission {
 
 	public function __construct()
 	{
-		$this->addRole('member');
+		$this->addRole('guest');
+		$this->addRole('member', 'guest');
 		$this->addRole('admin', 'member');
 		$this->addRole('owner', 'admin');
 
@@ -20,7 +21,8 @@ class Authorizator extends Permission {
 		$this->addResource('user');
 		$this->addResource('comment');
 
-		$this->allow('member', 'post', array('view', 'compose', 'edit', 'delete'));
+		$this->allow('guest', 'post', array('view'));
+		$this->allow('member', 'post', array('compose', 'edit', 'delete'));
 		$this->allow('admin', 'post', array('f-edit', 'f-delete'));
 
 		$this->allow('owner');
