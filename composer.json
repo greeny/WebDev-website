@@ -1,0 +1,25 @@
+{
+	"name": "greeny/webdev",
+	"description": "Website webdev.blatny.org.",
+	"homepage": "http://webdev.blatny.org",
+	"type": "project",
+	"license": ["MIT"],
+	"authors": [
+		{
+			"name": "Tomáš Blatný",
+			"homepage": "http://blatny.org"
+		}
+	],
+	"require": {
+		"php": ">= 5.3.0",
+		"nette/nette": "~2.1.0",
+        "kukulich/fshl": "2.1.0",
+        "tharos/leanmapper": "v2.1.0",
+        "dg/texy": "v2.3",
+        "kdyby/bootstrap-form-renderer": "dev-master"
+	},
+	"require-dev": {
+		"nette/tester": "~0.9.5"
+	},
+    "version": "1.0.0"
+}
