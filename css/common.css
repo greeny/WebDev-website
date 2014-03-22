@@ -2,6 +2,10 @@ body {
 	margin-top: 50px;
 }
 
+.spacer {
+	height: 30px;
+}
+
 .php-keyword1 {
 	color: #e03c3c;
 	font-weight: bold
