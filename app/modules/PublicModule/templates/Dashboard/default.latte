@@ -5,7 +5,8 @@
 		<h3><a n:href="Post:detail $post->id">{$post->title}</a></h3>
 		<small>
 			<span class="icon-user"></span> <a n:href="User:detail $post->user->id">{$post->user->nick}</a><br>
-			<span class="icon-time"></span> {$post->time|time}
+			<span class="icon-time"></span> {$post->time|time}<br>
+			<span class="icon-comments"></span> {count($post->comments)}
 		</small>
 		<hr>
 		{$post->text|truncate:100|texy}

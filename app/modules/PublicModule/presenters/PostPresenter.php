@@ -7,6 +7,7 @@ namespace WebDev\PublicModule;
 
 use Nette\Utils\Paginator;
 use WebDev\Controls\Form;
+use WebDev\Model\Comment;
 use WebDev\Model\Post;
 
 class PostPresenter extends BasePublicPresenter {
@@ -131,5 +132,27 @@ class PostPresenter extends BasePublicPresenter {
 		$this->postRepository->persist($post);
 		$this->flashSuccess('Příspěvek byl upraven.');
 		$this->redirect('detail', array('id' => $post->id));
+	}
+
+	public function createComponentAddCommentForm()
+	{
+		$form = $this->createForm();
+		$form->addText('text', 'Komentář');
+		$form->addPrimarySubmit('comment', 'Okomentovat');
+		$form->onSuccess[] = $this->addCommentFormSuccess;
+		return $form;
+	}
+
+	public function addCommentFormSuccess(Form $form)
+	{
+		$comment = Comment::from($form->getValues());
+		$comment->time = Time();
+		$comment->user = $this->userRepository->find($this->user->id);
+		$this->commentRepository->persist($comment);
+		$post = $this->postRepository->find($this->params['id']);
+		$post->addToComments($comment);
+		$this->postRepository->persist($post);
+		$this->flashSuccess('Komentář byl přidán.');
+		$this->refresh();
 	}
 }

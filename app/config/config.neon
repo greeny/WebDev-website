@@ -29,6 +29,7 @@ services:
 	- WebDev\Security\Authenticator
 	- WebDev\Security\Authorizator
 
+	- WebDev\Model\CommentRepository
 	- WebDev\Model\PostRepository
 	- WebDev\Model\UserRepository
 
