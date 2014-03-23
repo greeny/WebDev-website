@@ -145,14 +145,19 @@ class PostPresenter extends BasePublicPresenter {
 
 	public function addCommentFormSuccess(Form $form)
 	{
-		$comment = Comment::from($form->getValues());
-		$comment->time = Time();
-		$comment->user = $this->userRepository->find($this->user->id);
-		$this->commentRepository->persist($comment);
-		$post = $this->postRepository->find($this->params['id']);
-		$post->addToComments($comment);
-		$this->postRepository->persist($post);
-		$this->flashSuccess('Komentář byl přidán.');
-		$this->refresh();
+		if($this->user->isLoggedIn()) {
+			$comment = Comment::from($form->getValues());
+			$comment->time = Time();
+			$comment->user = $this->userRepository->find($this->user->id);
+			$this->commentRepository->persist($comment);
+			$post = $this->postRepository->find($this->params['id']);
+			$post->addToComments($comment);
+			$this->postRepository->persist($post);
+			$this->flashSuccess('Komentář byl přidán.');
+			$this->refresh();
+		} else {
+			$this->flashError('Musíš být přihlášený.');
+			$this->refresh();
+		}
 	}
 }
