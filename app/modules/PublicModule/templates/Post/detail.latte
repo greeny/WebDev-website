@@ -20,7 +20,7 @@
 
 <h2>Komentáře</h2>
 
-{if $user->isLoggedIn}
+{if $user->isLoggedIn()}
 	{control addCommentForm}
 {/if}
 {foreach $post->comments as $comment}
