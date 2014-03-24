@@ -26,6 +26,6 @@
 {foreach $post->comments as $comment}
 	<h4><span class="icon-user"></span> <a n:href="User:detail $comment->user->id">{$comment->user->nick}</a><br></h4>
 	<span class="pull-right"><span class="icon-time"></span> {$comment->time|time}</span>
-	<span><span class="icon-comment"></span> {$comment->text}</span>
+	<span><span class="icon-comment"></span> {$comment->text|texy}</span>
 	{sep}<hr>{/sep}
 {/foreach}
