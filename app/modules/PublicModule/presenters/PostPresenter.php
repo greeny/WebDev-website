@@ -137,7 +137,8 @@ class PostPresenter extends BasePublicPresenter {
 	public function createComponentAddCommentForm()
 	{
 		$form = $this->createForm();
-		$form->addText('text', 'Komentář');
+        $form->addTextArea('text', 'Komentář')
+                ->setRequired('Prosím, zadej text komentáře.');
 		$form->addPrimarySubmit('comment', 'Okomentovat');
 		$form->onSuccess[] = $this->addCommentFormSuccess;
 		return $form;
